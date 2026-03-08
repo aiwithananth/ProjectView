@@ -1,0 +1,35 @@
+{
+  "name": "task-tracker",
+  "version": "1.0.0",
+  "description": "Hierarchical task tracker with multi-project support",
+  "license": "MIT",
+  "author": "Anantharaman Krishnamoorthy (Ananth) <aiwithananth@gmail.com>",
+  "type": "module",
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server/index.js",
+    "client": "cd client && npm run dev",
+    "setup": "npm install && cd client && npm install && cd .. && npx prisma generate && npx prisma db push && node prisma/seed.js",
+    "db:push": "npx prisma db push",
+    "db:seed": "node prisma/seed.js",
+    "db:studio": "npx prisma studio"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.504.0",
+    "@aws-sdk/lib-dynamodb": "^3.504.0",
+    "@prisma/client": "^5.9.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "express-session": "^1.19.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prisma": "^5.9.0"
+  }
+}

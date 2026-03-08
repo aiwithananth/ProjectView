@@ -1,0 +1,312 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root,
+  [data-theme="light"] {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --page-bg: 220 14% 96%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+    --font-sans: ui-sans-serif, system-ui, sans-serif, "Segoe UI", Roboto, sans-serif;
+    --font-heading: ui-sans-serif, system-ui, sans-serif, "Segoe UI", Roboto, sans-serif;
+    /* Task/calendar bar palette - same number of colors per theme */
+    --task-1: 262 83% 58%;
+    --task-1-text: 0 0% 100%;
+    --task-2: 47 96% 53%;
+    --task-2-text: 0 0% 9%;
+    --task-3: 199 89% 48%;
+    --task-3-text: 0 0% 100%;
+    --task-4: 346 77% 50%;
+    --task-4-text: 0 0% 100%;
+    --task-5: 142 71% 45%;
+    --task-5-text: 0 0% 100%;
+    --task-6: 24 95% 53%;
+    --task-6-text: 0 0% 100%;
+    --overdue: 0 84% 60%;
+    --overdue-text: 0 0% 100%;
+  }
+
+  [data-theme="dark"] {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+    --page-bg: 222 47% 7%;
+    --popover: 222 47% 14%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 22%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 63% 51%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 22%;
+    --input: 217 33% 22%;
+    --ring: 217 91% 60%;
+    --font-sans: ui-sans-serif, system-ui, sans-serif, "Segoe UI", Roboto, sans-serif;
+    --font-heading: ui-sans-serif, system-ui, sans-serif, "Segoe UI", Roboto, sans-serif;
+    --task-1: 263 70% 55%;
+    --task-1-text: 0 0% 100%;
+    --task-2: 48 96% 53%;
+    --task-2-text: 0 0% 9%;
+    --task-3: 199 89% 48%;
+    --task-3-text: 0 0% 100%;
+    --task-4: 346 77% 55%;
+    --task-4-text: 0 0% 100%;
+    --task-5: 142 71% 45%;
+    --task-5-text: 0 0% 100%;
+    --task-6: 24 95% 53%;
+    --task-6-text: 0 0% 100%;
+    --overdue: 0 72% 51%;
+    --overdue-text: 0 0% 100%;
+  }
+
+  [data-theme="contrast"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --page-bg: 0 0% 93%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 90%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 25%;
+    --accent: 0 0% 90%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 0% 20%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 0%;
+    --font-sans: "Segoe UI", system-ui, sans-serif;
+    --font-heading: "Segoe UI", system-ui, sans-serif;
+    --task-1: 0 0% 15%;
+    --task-1-text: 0 0% 100%;
+    --task-2: 0 0% 35%;
+    --task-2-text: 0 0% 100%;
+    --task-3: 0 0% 55%;
+    --task-3-text: 0 0% 100%;
+    --task-4: 0 0% 25%;
+    --task-4-text: 0 0% 100%;
+    --task-5: 0 0% 45%;
+    --task-5-text: 0 0% 100%;
+    --task-6: 0 0% 30%;
+    --task-6-text: 0 0% 100%;
+    --overdue: 0 0% 20%;
+    --overdue-text: 0 0% 100%;
+  }
+
+  [data-theme="blue"] {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 18%;
+    --page-bg: 214 32% 91%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 18%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 222 47% 18%;
+    --muted: 214 32% 91%;
+    --muted-foreground: 222 25% 40%;
+    --accent: 214 32% 88%;
+    --accent-foreground: 222 47% 18%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 85%;
+    --input: 214 32% 85%;
+    --ring: 221 83% 53%;
+    --font-sans: "Segoe UI", system-ui, sans-serif;
+    --font-heading: "Segoe UI", system-ui, sans-serif;
+    --task-1: 221 83% 53%;
+    --task-1-text: 0 0% 100%;
+    --task-2: 199 89% 48%;
+    --task-2-text: 0 0% 100%;
+    --task-3: 187 85% 43%;
+    --task-3-text: 0 0% 100%;
+    --task-4: 262 83% 58%;
+    --task-4-text: 0 0% 100%;
+    --task-5: 142 71% 45%;
+    --task-5-text: 0 0% 100%;
+    --task-6: 24 95% 53%;
+    --task-6-text: 0 0% 100%;
+    --overdue: 0 72% 51%;
+    --overdue-text: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    font-family: var(--font-sans);
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-color: hsl(var(--page-bg));
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Theme-aware scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Task bar colors (use in calendar/timeline) */
+.task-bar-1 { background-color: hsl(var(--task-1)); color: hsl(var(--task-1-text)); }
+.task-bar-2 { background-color: hsl(var(--task-2)); color: hsl(var(--task-2-text)); }
+.task-bar-3 { background-color: hsl(var(--task-3)); color: hsl(var(--task-3-text)); }
+.task-bar-4 { background-color: hsl(var(--task-4)); color: hsl(var(--task-4-text)); }
+.task-bar-5 { background-color: hsl(var(--task-5)); color: hsl(var(--task-5-text)); }
+.task-bar-6 { background-color: hsl(var(--task-6)); color: hsl(var(--task-6-text)); }
+.task-bar-overdue { background-color: hsl(var(--overdue)); color: hsl(var(--overdue-text)); }
+
+/* Task tree connector lines */
+.task-connector {
+  position: relative;
+}
+
+.task-connector::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 0;
+  bottom: 50%;
+  width: 1px;
+  background-color: #e5e7eb;
+}
+
+.task-connector::after {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  width: 12px;
+  height: 1px;
+  background-color: #e5e7eb;
+}
+
+/* Calendar styles - theme aware (match Week 14 / timeline borders) */
+.rbc-calendar {
+  background: hsl(var(--card));
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+.rbc-header {
+  padding: 0.75rem 0;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+  border-bottom-width: 1px;
+}
+
+.rbc-today {
+  background: hsl(var(--primary) / 0.15);
+}
+
+.rbc-month-view,
+.rbc-time-view {
+  border-color: hsl(var(--border));
+}
+
+.rbc-month-row,
+.rbc-day-bg,
+.rbc-time-content {
+  border-color: hsl(var(--border));
+}
+
+.rbc-date-cell {
+  border-color: hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+.rbc-off-range .rbc-date-cell {
+  color: hsl(var(--muted-foreground));
+}
+
+.rbc-off-range-bg {
+  background: hsl(var(--muted) / 0.5);
+}
+
+.rbc-toolbar {
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+}
+
+.rbc-toolbar button {
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+  background: hsl(var(--muted));
+}
+
+.rbc-toolbar button:hover {
+  background: hsl(var(--muted) / 0.8);
+}
+
+.rbc-toolbar button.rbc-active {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-color: hsl(var(--primary));
+}
+
+.rbc-button-link {
+  color: inherit;
+}
+
+.rbc-row-content .rbc-row-segment {
+  border-color: hsl(var(--border));
+}
+
+.rbc-event {
+  border: 1px solid hsl(var(--border));
+}
+

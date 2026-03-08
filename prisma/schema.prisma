@@ -1,0 +1,120 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   String                 @id @default(cuid())
+  name                 String
+  email                String                 @unique
+  passwordHash         String?
+  avatar               String?
+  createdAt            DateTime               @default(now())
+  tasks                Task[]
+  projects             ProjectMember[]
+  comments             TaskComment[]
+  checklistItemComments ChecklistItemComment[]
+}
+
+model Project {
+  id          String          @id @default(cuid())
+  name        String
+  description String?
+  color       String          @default("#6366f1")
+  collapsed   Boolean         @default(false)
+  createdAt   DateTime        @default(now())
+  tasks       Task[]
+  members     ProjectMember[]
+  checklists  Checklist[]
+}
+
+model ProjectMember {
+  id        String  @id @default(cuid())
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  role      String  @default("member") // owner | member | viewer
+
+  @@unique([projectId, userId])
+}
+
+model Task {
+  id          String     @id @default(cuid())
+  title       String
+  description String?
+  project     Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId   String
+  parent      Task?      @relation("SubTasks", fields: [parentId], references: [id], onDelete: Cascade)
+  parentId    String?
+  children    Task[]     @relation("SubTasks")
+  owner       User?      @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  ownerId     String?
+  progress    Int        @default(0) // 0–100
+  startDate   DateTime?
+  dueDate     DateTime?
+  status      String     @default("PENDING") // PENDING | IN_PROGRESS | ON_TRACK | OVERDUE | BLOCKED | DONE
+  phase       String?    // REVIEW | DEV | TEST
+  tags        Tag[]      @relation("TaskTags")
+  depth       Int        @default(0) // 0=task group, 1=subtask, 2=sub-subtask...
+  order       Int        @default(0)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  comments    TaskComment[]
+}
+
+model TaskComment {
+  id        String   @id @default(cuid())
+  body      String
+  task      Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  taskId    String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  createdAt DateTime @default(now())
+}
+
+model Tag {
+  id    String @id @default(cuid())
+  name  String @unique
+  color String @default("#94a3b8")
+  tasks Task[] @relation("TaskTags")
+}
+
+model Checklist {
+  id        String          @id @default(cuid())
+  title     String
+  project   Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String
+  items     ChecklistItem[]
+  createdAt DateTime        @default(now())
+}
+
+model ChecklistItem {
+  id          String                 @id @default(cuid())
+  label       String
+  done        Boolean                @default(false)
+  status      String                 @default("pending") // pending | in_progress | done
+  checklist   Checklist              @relation(fields: [checklistId], references: [id], onDelete: Cascade)
+  checklistId String
+  order       Int                    @default(0)
+  comments    ChecklistItemComment[]
+}
+
+model ChecklistItemComment {
+  id             String       @id @default(cuid())
+  body           String
+  statusAtChange String?      // status when this comment was added
+  checklistItem  ChecklistItem @relation(fields: [checklistItemId], references: [id], onDelete: Cascade)
+  checklistItemId String
+  author         User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId       String
+  createdAt      DateTime     @default(now())
+}
+
